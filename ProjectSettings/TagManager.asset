@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Selectable
+  - Animal
+  - Camera
+  - Floor
+  - Water
   layers:
   - Default
   - TransparentFX
