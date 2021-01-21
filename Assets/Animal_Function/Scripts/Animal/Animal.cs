@@ -116,7 +116,7 @@ public abstract class Animal : MonoBehaviour
         return (n >= 0) ? (n + min) : (n + max);
     }
     
-    public void SetActivaCamera(bool active)
+    public virtual void SetActivaCamera(bool active)
     {
         cam.enabled = active;
     }
