@@ -20,13 +20,19 @@ public abstract class Animal : MonoBehaviour
     [SerializeField]
     protected float rotYSpeed;    // 상하 회전 속도
 
+    protected float floorHigh;
+    
     /* 동물 고유 ID */
     protected int ID;
 
     private const float MAX_ROTATION_DEGREE = 45f;
     private const float MIN_ROTATION_DEGREE = -45f;
 
-    public abstract void Initiate();
+    public virtual void Initiate()
+    {
+        floorHigh = this.transform.position.y;
+    }
+
     public abstract void Move();
 
     public void InitiateComponent()
@@ -57,6 +63,8 @@ public abstract class Animal : MonoBehaviour
         Vector3 movedir = (Vector3.forward * v) + (Vector3.right * h);
 
         animalTr.Translate(movedir.normalized * Time.deltaTime * speed, Space.Self);
+
+        CheckAnimalHigh();
     }
 
     public void RotateAniaml_LR()
@@ -65,7 +73,7 @@ public abstract class Animal : MonoBehaviour
 
         float degreeX = Input.GetAxis("Mouse X");
         Vector3 rotdir = (Vector3.up * degreeX);
-        animalTr.Rotate(rotdir.normalized * Time.deltaTime * rotXSpeed);
+        animalTr.Rotate(rotdir.normalized * Time.deltaTime * rotXSpeed, Space.Self);
     }
 
     public void RotateAnimal_UD(Transform target)
@@ -74,9 +82,16 @@ public abstract class Animal : MonoBehaviour
 
         float degreeY = Input.GetAxis("Mouse Y");
         Vector3 rotdir = (Vector3.left * degreeY);
-        target.Rotate(rotdir.normalized * Time.deltaTime * rotYSpeed);
+        target.Rotate(rotdir.normalized * Time.deltaTime * rotYSpeed, Space.Self);
 
         CheckRotateLimit();
+    }
+
+    private void CheckAnimalHigh()
+    {
+        Vector3 currentPos = animalTr.position;
+        currentPos.y = Mathf.Clamp(currentPos.y, floorHigh, Mathf.Infinity);
+        animalTr.position = currentPos;
     }
 
     private void CheckRotateLimit()

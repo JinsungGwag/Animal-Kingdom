@@ -8,6 +8,11 @@ public abstract class Amphibian : Animal
 
     private bool isSwim = false;
 
+    public override void Initiate()
+    {
+        base.InitiateComponent();
+    }
+
     public override void Move()
     {
         float moveSpeed;

@@ -8,6 +8,11 @@ public abstract class Mammal : Animal
 
     private bool isRunning = false;
 
+    public override void Initiate()
+    {
+        base.InitiateComponent();
+    }
+
     public override void Move()
     {
         float moveSpeed;

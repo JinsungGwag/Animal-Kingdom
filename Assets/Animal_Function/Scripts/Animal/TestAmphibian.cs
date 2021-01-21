@@ -10,6 +10,8 @@ public class TestAmphibian : Amphibian
         rotXSpeed = 100f;
         rotYSpeed = 50f;
 
-        base.InitiateComponent();
+        swimSpeed = 50f;
+
+        base.Initiate();
     }
 }

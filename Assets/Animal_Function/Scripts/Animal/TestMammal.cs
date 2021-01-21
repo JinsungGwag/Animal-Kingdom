@@ -10,6 +10,6 @@ public class TestMammal : Mammal
         rotXSpeed = 100f;
         rotYSpeed = 50f;
 
-        base.InitiateComponent();
+        base.Initiate();
     }
 }

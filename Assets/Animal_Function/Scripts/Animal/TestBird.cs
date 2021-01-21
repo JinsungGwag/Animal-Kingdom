@@ -10,6 +10,8 @@ public class TestBird : Bird
         rotXSpeed = 100f;
         rotYSpeed = 50f;
 
-        base.InitiateComponent();
+        flySpeed = 50f;
+
+        base.Initiate();
     }
 }
